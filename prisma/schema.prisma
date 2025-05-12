@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  password     String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  image        String?
+  role         String   @default("user")
+  ratings      Rating[]
+  recaps       Recap[]
+  comments     Comment[]
+  bookmarks    Comic[]  @relation("bookmarks")
+  createdComic Comic[]  @relation("createdComic")
+}
+
+model Comic {
+  id          String     @id @default(cuid())
+  title       String     @unique
+  synopsis    String
+  author      String?    
+  artist      String?
+  coverArt    String?
+  status      String?
+  featured    Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  publication String?
+  slug        String?    @unique
+  type        String
+  exclusivity String
+  chapters    Chapters[]
+  ratings     Rating[]
+  recaps      Recap[]
+  comments    Comment[]
+  genres      Genre[]    @relation("ComicToGenre")
+  bookmarks   User[]     @relation("bookmarks")
+  createdBy   User[]     @relation("createdComic")
+}
+
+model Genre {
+  id    String  @id @default(cuid())
+  name  String
+  comic Comic[] @relation("ComicToGenre")
+}
+
+model Chapters {
+  id        String   @id @default(cuid())
+  title     String
+  chapNum   Int
+  createdAt DateTime @default(now())
+  comicId   String
+  comic     Comic    @relation(fields: [comicId], references: [id])
+  images    Images[]
+  recap     Recap[]
+}
+
+model Images {
+  url       String
+  chapterId String
+  pageNum   Int
+  chapter   Chapters @relation(fields: [chapterId], references: [id])
+
+  @@id([chapterId, pageNum])
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  comicId   String
+  userId    String
+  score     Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  comic     Comic    @relation(fields: [comicId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Recap {
+  id        String   @id @default(cuid())
+  comicId   String
+  userId    String
+  chapterId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  chapter   Chapters @relation(fields: [chapterId], references: [id])
+  comic     Comic    @relation(fields: [comicId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Comment {
+  id         String     @id @default(cuid())
+  userId     String
+  comicId    String
+  content    String  
+  isDeleted  Boolean    @default(false)
+  isEdited   Boolean    @default(false)  
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  parentId   String?    
+  parent     Comment?   @relation("CommentReplies", fields: [parentId], references: [id])
+  replies    Comment[]  @relation("CommentReplies")
+
+  user       User       @relation(fields: [userId], references: [id])
+  comic      Comic      @relation(fields: [comicId], references: [id])
+}
