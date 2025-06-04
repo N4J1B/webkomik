@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function postComment(req, res) {
   const { content, sessionId, comicId, parentId = null } = req.body;

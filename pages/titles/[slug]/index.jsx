@@ -427,7 +427,7 @@ export default function SingleComic({ comic, relatedComic, comicRating }) {
     limitRelated();
   }, []);
 
-  if (session?.user?.role === "paid" || session?.user?.role === "super") {
+  if (comic.exclusivity === "Free" || session?.user?.role === "paid" || session?.user?.role === "super") {
     if (comic.type === "comic") {
       return (
         <>

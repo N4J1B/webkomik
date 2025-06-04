@@ -26,7 +26,7 @@ export default function LoginPage() {
         message: result.error,
       });
     } else {
-      setTimeout((window.location.href = "/"), 3000);
+      setTimeout((window.location.href = "https://ainuns.my.id/"), 3000);
     }
   }
 

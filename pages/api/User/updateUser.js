@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function updateUser(req, res) {
   const { id, name, oldEmail, email, role } = req.body;

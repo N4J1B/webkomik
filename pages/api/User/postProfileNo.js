@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function postProfile(req, res) {
   const { id, name, email, image } = req.body;

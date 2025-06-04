@@ -5,7 +5,11 @@ import { createColumnHelper } from "@tanstack/react-table";
 
 import getComic from "../api/Comic/getComic";
 import UserLayout from "../Layout/UserLayout";
-import moment from "moment-timezone";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js"
+import timezone from "dayjs/plugin/timezone.js"
+import relativeTime from "dayjs/plugin/relativeTime";
+
 export async function getServerSideProps() {
   const comic = await getComic();
   return {
@@ -20,17 +24,23 @@ function TimelineDashboard({ comic }) {
 
   const columnHelper = createColumnHelper();
 
+  dayjs.extend(utc)
+  dayjs.extend(timezone)
+  dayjs.extend(relativeTime);
+
   const comicData = useMemo(
     () =>
       comic.map((item, index) => {
         return {
           index: index + 1,
-          createdAt: moment(item.createdAt)
-            .tz("Asia/Jakarta")
-            .format("DD MMM YYYY"),
-          createdTime: moment(item.createdAt, "YYYYMMDD")
-            .tz("Asia/Jakarta")
-            .fromNow(),
+          // createdAt: moment(item.createdAt)
+          //   .tz("Asia/Jakarta")
+          //   .format("DD MMM YYYY"),
+          // createdTime: moment(item.createdAt, "YYYYMMDD")
+          //   .tz("Asia/Jakarta")
+          //   .fromNow(),
+          createdAt: dayjs(item.createdAt).tz("Asia/Jakarta").format("DD MMM YYYY"),
+          createdTime: dayjs(item.createdAt).tz("Asia/Jakarta").fromNow(),
           ...item,
         };
       }),
@@ -47,16 +57,18 @@ function TimelineDashboard({ comic }) {
         header: "Title",
         cell: (info) => <span>{info.getValue()}</span>,
       }),
-      columnHelper.accessor("createdAt", {
-        header: "Created At",
-        cell: (info) => (
-          <span>{moment(info.getValue()).format("DD MMM YYYY")}</span>
-        ),
-      }),
-      columnHelper.accessor("createdTime", {
-        header: "Created Time",
-        cell: (info) => <span>{info.getValue()}</span>,
-      }),
+    columnHelper.accessor("createdAt", {
+      header: "Created At",
+      cell: (info) => (
+        <span>{dayjs(info.getValue()).format("DD MMM YYYY")}</span>
+      ),
+    }),
+    columnHelper.accessor("createdTime", {
+      header: "Created Time",
+      cell: (info) => (
+        <span>{info.getValue()}</span>
+      ),
+    }),
     ],
     []
   );

@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 import bcrypt from "bcrypt";
 
 export default async function postProfileYes(req, res) {

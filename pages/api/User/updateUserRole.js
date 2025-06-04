@@ -1,4 +1,4 @@
-import prisma from "../prisma"; // Adjust the path to your Prisma instance
+import prisma from "../../../lib/prisma"; // Adjust the path to your Prisma instance
 import getSubscription from "./getSubscription";
 
 export default async function handler(req, res) {
@@ -17,16 +17,19 @@ export default async function handler(req, res) {
         (sub) => sub.order_id === req.body.transaction_id
       );
 
-      console.log(
-        "Subscription data:",
-        subscriptionData.find((sub) => sub.order_id === req.body.transaction_id)
-      );
+      // Convert updated_at to a Date object
+      const updatedAt = new Date(subscription.updated_at);
+
+      // Calculate the paidUntil date (30 days from updated_at)
+      const paidUntil = new Date(updatedAt);
+      paidUntil.setDate(updatedAt.getDate() + 30);
 
       // Update the user role in the database using Prisma
       await prisma.user.update({
         where: { email: subscription.supporter_email },
         data: {
           role: "paid",
+          roleExpiredAt: paidUntil,
         },
       });
 

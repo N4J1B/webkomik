@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 import bcrypt from "bcrypt";
 
 const salt = bcrypt.genSaltSync(10);

@@ -133,7 +133,7 @@ function Routes({ sidenav, setSideNav, session }) {
   const defaultNav = "px-4 py-2 flex items-center";
 
   function handleLogout() {
-    router.push("/");
+    router.push("https://ainuns.my.id/");
     signOut();
   }
 
@@ -191,11 +191,11 @@ function Routes({ sidenav, setSideNav, session }) {
             </div>
             <nav>
               <ul className="m-0 p-4 list-none text-white font-bold">
-                <Link href="/">
+                <Link href="https://ainuns.my.id/">
                   <li
                     className={`
                       ${
-                        router.pathname === "/" ? activeNav : defaultNav
+                        router.pathname === "https://ainuns.my.id/" ? activeNav : defaultNav
                       } cursor-pointer
                     `}
                   >

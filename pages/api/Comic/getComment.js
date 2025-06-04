@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function getComment(context, page = 1, limit = 5) {
   const slug = context.query.slug;

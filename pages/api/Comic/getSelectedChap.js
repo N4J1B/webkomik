@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function getSelectedChap(req, res) {
   const { id, chapNum } = req.query;

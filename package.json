@@ -6,17 +6,21 @@
   "scripts": {
     "dev": "next dev -p 80",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "migrate": "prisma migrate dev",
-    "postmigrate": "npx @snaplet/seed sync"
+    "postmigrate": "npx @snaplet/seed sync",
+    "start-cron": "node scripts/revertRoles.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.9",
     "@next-auth/prisma-adapter": "^1.0.5",
     "@prisma/client": "^4.9.0",
     "@tanstack/react-table": "8.7.9",
+    "aincomic": "link:",
     "bcrypt": "^5.1.0",
     "cloudinary-react": "^1.8.1",
+    "dayjs": "^1.11.13",
+    "express": "^4.20.0",
     "filepond": "^4.30.6",
     "filepond-plugin-file-poster": "^2.5.1",
     "filepond-plugin-file-validate-type": "^1.2.8",
@@ -29,6 +33,7 @@
     "moment-timezone": "^0.5.46",
     "next": "12.3.0",
     "next-auth": "^4.19.2",
+    "node-cron": "^4.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-filepond": "^7.1.2",
@@ -36,7 +41,6 @@
     "react-icons": "^4.7.1",
     "react-quill": "^2.0.0",
     "slugify": "^1.6.5",
-    "ukk-reduxx": "link:",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

@@ -26,7 +26,7 @@ function UserLayout({ children }) {
                 className="cursor-pointer ml-3 mr-3 text-2xl"
                 onClick={() => setSideNav(!sidenav)}
               />
-              <Link href="/">
+              <Link href="https://ainuns.my.id/">
                 <h1 className="font-bold flex-1 text-sm md:text-xl cursor-pointer">
                   👋
                 </h1>

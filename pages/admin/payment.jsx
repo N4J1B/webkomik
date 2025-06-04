@@ -223,8 +223,8 @@ function PaymentDashboard({ subscription, balance }) {
         header: "Index",
         cell: (info) => <span>{info.getValue()}</span>,
       }),
-      columnHelper.accessor("order_id", {
-        header: "Order ID",
+      columnHelper.accessor("updated_at", {
+        header: "Transaction Time",
         cell: (info) => <span>{info.getValue()}</span>,
       }),
       columnHelper.accessor("supporter_name", {

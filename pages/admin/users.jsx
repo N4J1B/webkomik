@@ -105,14 +105,30 @@ function UserManagementPage({ users }) {
       columnHelper.accessor("role", {
         header: "Role",
         cell: (info) => {
-          if (info.getValue() === "admin") {
-            return <span>Admin</span>;
+          if (info.getValue() === "free") {
+            return <span>Free</span>;
           } else if (info.getValue() === "super") {
             return <span>Super Admin</span>;
-          } else {
-            return <span>User</span>;
+          } else if (info.getValue() === "paid") {
+            return <span>Paid (Active)</span>;
+          } else if (info.getValue() === "paidEnd") {
+            return <span>Paid (Ended)</span>;
           }
         },
+      }),
+      columnHelper.accessor("roleExpiredAt", {
+        header: "Subs Started & Expired",
+        cell: (info) => {
+          let originalDate = moment(info.getValue());
+          let minusOneMonth = originalDate.clone().subtract(1, 'months');
+          if (info.getValue() === null) return " "
+          return (
+          <>
+            <span>{minusOneMonth.format("DD MMM YYYY")} </span> - 
+            <span> {originalDate.format("DD MMM YYYY")}</span>
+          </>
+          )
+        }
       }),
       columnHelper.accessor("createdAt", {
         header: "Created At",

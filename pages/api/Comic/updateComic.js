@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 import slugify from "slugify";
 
 export default async function updateComic(req, res) {

@@ -5,20 +5,19 @@ export default async function getBalance() {
       {
         method: "GET",
         headers: {
-          key: process.env.TRAKTEER_API_KEY,
+          key: process.env.TRAKTEER_KEY,
           Accept: "application/json",
           "X-Requested-With": "XMLHttpRequest",
         },
       }
     );
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
+    if (res.ok) {
+      const json = await res.json();
+      return json.result || [];
     }
-    const json = await res.json();
-
-    return json.result || []; // Return an empty array if no data is found
+    // Return an empty array if no data is found
   } catch (error) {
-    console.error("Error fetching subscription data:", error);
+    console.error("Error fetching subscription data balance:", error);
     return []; // Return an empty array in case of an error
   }
 }

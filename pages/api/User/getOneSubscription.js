@@ -1,4 +1,4 @@
-import prisma from "../prisma"; // Adjust the path to your Prisma instance
+import prisma from "../../../lib/prisma";; // Adjust the path to your Prisma instance
 import getSubscription from "./getSubscription";
 
 export default async function getOneSubscription(req, res) {
@@ -19,7 +19,7 @@ export default async function getOneSubscription(req, res) {
     );
 
     if (!findSubscription) {
-      return res.status(404).json({ message: "Subscription not found" });
+      return []
     }
 
     // return findSubscription data as an array of objects

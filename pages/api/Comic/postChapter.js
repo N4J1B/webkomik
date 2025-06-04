@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function postChapter(req, res) {
   const { chapTitle, chapNum, chapImg, comicId, pageNum } = req.body;

@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function getFeatured(req, res) {
   const featuredComic = await prisma.comic.findMany({

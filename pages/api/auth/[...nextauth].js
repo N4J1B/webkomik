@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth/next";
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 import bcrypt from "bcrypt";
 
 export default NextAuth({
@@ -45,6 +45,7 @@ export default NextAuth({
           name: true,
           image: true,
           role: true,
+          roleExpiredAt: true,
           createdComic: {
             select: {
               id: true,

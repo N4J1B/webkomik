@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function searchTitle(req, res) {
   const { title, genres } = req.body;

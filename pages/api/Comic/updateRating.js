@@ -1,4 +1,4 @@
-import prisma from "../prisma";
+import prisma from "../../../lib/prisma";;
 
 export default async function updateRating(req, res) {
   const { ratingId, score } = req.body;

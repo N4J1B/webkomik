@@ -15,7 +15,8 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   image        String?
-  role         String   @default("user")
+  role         String   @default("free")  
+  roleExpiredAt DateTime?
   ratings      Rating[]
   recaps       Recap[]
   comments     Comment[]
