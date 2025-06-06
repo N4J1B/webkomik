@@ -1,6 +1,12 @@
 # Webkomik
 Aplikasi Web Komik adalah sebuah platform digital yang dirancang untuk memfasilitasi pembaca dan kreator komik. Pengguna dapat membaca komik berdasarkan genre, memberi rating dan komentar, serta menyimpan komik favorit. Sementara itu, komikus atau admin dapat mengelola komik, chapter, genre, hingga data pengguna melalui dashboard manajemen.
 
+## Tujuan Aplikasi
+1. Menyediakan Platform Publikasi untuk Komikus 
+Aplikasi ini bertujuan untuk memberikan wadah bagi komikus, terutama komikus independen, agar dapat dengan mudah mempublikasikan karyanya tanpa perlu bergantung pada penerbit besar atau platform pihak ketiga yang memiliki banyak keterbatasan. 
+2. Mempermudah Akses Pembaca ke Komik Digital 
+Dengan adanya platform ini, pembaca dapat dengan mudah mengakses dan menikmati berbagai judul komik secara online tanpa perlu mengunduh aplikasi tambahan atau mencari di berbagai platform berbeda.
+
 ## Fitur Webkomik
 Untuk Pengguna
 1. Registrasi dan login
@@ -46,7 +52,7 @@ Pengembang
 3. Dian Novita Putranto (33050974023)
 4. Bintang Prayoga      (230509740026)
 
-Project aplikasi ResiKuu untuk memenuhi tugas mata kuliah pemrograman web
+Project Webkomik ini untuk memenuhi tugas mata kuliah pemrograman web
 
 Prodi pendidikan Teknologi informasi [Laman Resmi Prodi Pendidikan Teknologi Informasi](https://pendidikan-ti.ft.unesa.ac.id/)\
-Universitas Negeri Surabaya [Laman Resmi Prodi Pendidikan Teknologi Informasi](https://unesa.ac.id)
+Universitas Negeri Surabaya [Laman Resmi UNESA](https://unesa.ac.id)
